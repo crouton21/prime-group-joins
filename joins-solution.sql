@@ -19,9 +19,10 @@ JOIN products on products.id=warehouse_product.product_id
 WHERE products.description='diet pepsi';
 
 -- 5. Get the number of orders for each customer. NOTE: It is OK if those without orders are not included in results.
-SELECT orders.total, customers.first_name, customers.last_name FROM orders
+SELECT COUNT(orders.total), customers.first_name, customers.last_name FROM orders
 JOIN addresses on addresses.id=orders.address_id
-JOIN customers on customers.id=addresses.customer_id;
+JOIN customers on customers.id=addresses.customer_id
+GROUP BY customers.first_name, customers.last_name;
 
 -- 6. How many customers do we have?
 SELECT COUNT(customers.id) FROM customers;
